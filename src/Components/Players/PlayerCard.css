@@ -1,0 +1,15 @@
+.player-card {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.player-card h5 span {
+    float: right;
+    color: green;
+}
+
+.player-card p {
+    font-size: 12px;
+}
