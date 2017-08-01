@@ -10,7 +10,7 @@ class Players extends Component {
         super(props);
 
         this.state = {
-            allPlayers: []
+            allPlayers: null
         }
     }
 
@@ -35,7 +35,7 @@ class Players extends Component {
             <div>
                 <h1>Players</h1>
                 <div className="players-grid container">
-                    {this.state.allPlayers.map(function(player) {
+                    {!this.state.allPlayers ? 'Loading...' : this.state.allPlayers.map(function(player) {
                         return (
                             <PlayerCard
                                 key={player.id}
