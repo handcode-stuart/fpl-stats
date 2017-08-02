@@ -14,12 +14,8 @@ class Players extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getAllPlayers();
-    }
-
     getAllPlayers() {
-        return Axios.get('https://fantasy.premierleague.com/drf/bootstrap-static')
+        Axios.get('https://fantasy.premierleague.com/drf/bootstrap-static')
             .then((response) => {
                 this.setState({
                     allPlayers: response.data.elements
@@ -28,6 +24,10 @@ class Players extends Component {
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    componentDidMount() {
+        this.getAllPlayers();
     }
 
     render() {
