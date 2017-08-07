@@ -11,7 +11,8 @@ class Players extends Component {
 
         this.state = {
             allPlayers: null,
-            sortedPlayers: null
+            sortedPlayers: null,
+            currentFilter: 'All'
         }
     }
 
@@ -28,7 +29,7 @@ class Players extends Component {
         })
     }
 
-    sortPlayers(filter, reverse = false) {
+    sortPlayers(filter, filter_text, reverse = false) {
 
         let sortedPlayers = [];
         sortedPlayers = sortedPlayers.concat(this.state.allPlayers);
@@ -62,6 +63,10 @@ class Players extends Component {
             })
 
         }
+
+        this.setState({
+            currentFilter: filter_text
+        })
     }
 
     componentDidMount() {
@@ -72,10 +77,16 @@ class Players extends Component {
         return (
             <div>
                 <h1>Players</h1>
-                <p>Sort by:</p>
-                <button onClick={() => {this.sortPlayers('all')}}>Players</button>
-                <button onClick={() => {this.sortPlayers('total_points')}}>Points</button>
-                <button onClick={() => {this.sortPlayers('goals_scored')}}>Goals</button>
+                <div className="sort-buttons">
+                    <h3>Sorted by: {this.state.currentFilter}</h3>
+                    <button onClick={() => {this.sortPlayers('all', 'All')}}>Reset</button>
+                    <button onClick={() => {this.sortPlayers('total_points', 'Points')}}>Points</button>
+                    <button onClick={() => {this.sortPlayers('goals_scored', 'Goals')}}>Goals</button>
+                    <button onClick={() => {this.sortPlayers('assists', 'Assists')}}>Assists</button>
+                    <button onClick={() => {this.sortPlayers('now_cost', 'Cost')}}>Cost</button>
+                    <button onClick={() => {this.sortPlayers('event_points', 'Gameweek points')}}>Gameweek points</button>
+                    <button onClick={() => {this.sortPlayers('points_per_game', 'Avg points')}}>Avg points</button>
+                </div>
                 <div className="players-grid container">
                     {
                         !this.state.sortedPlayers ?
